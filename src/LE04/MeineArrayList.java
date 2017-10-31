@@ -9,7 +9,6 @@ public class MeineArrayList<E> {
     private int capacity;
     private int increment;
 
-// with initial capacity c
     public MeineArrayList(int c, int inc) {
         capacity = c;
         list = (E[]) new Object[c];
@@ -17,38 +16,32 @@ public class MeineArrayList<E> {
         increment = inc;
     }
 
-    public Object[] newList(){
-        Object[] liste = new Object[0];
+    public ArrayList<E[]> newList(){
+        ArrayList<E[]> liste = new ArrayList<>();
         return liste;
     }
 
-    public static Object[] addToList(Object[] liste, Object neuesElement){
-        liste[liste.length +1] = neuesElement;
+    public ArrayList<E[]> addToList(ArrayList<E[]> liste, Object neuesElement){
+        liste.add((E[]) neuesElement);
         return liste;
     }
 
-    public Object[] delete(int what, Object[] liste) {
-        liste[what] = null;
+    public ArrayList<E[]> delete(Object what, ArrayList<E[]> liste) {
+        liste.remove(what);
         return liste;
     }
 
-    public Object[] deleteWholeList(Object[] liste){
-        liste = new Object[0];
+    public ArrayList<E[]> deleteWholeList(ArrayList<E[]> liste){
+        liste = newList();
         return liste;
     }
 
-    public void readAll(Object[] liste) {
-        int x = 0;
-        while (x < liste.length) {
-            String[] neuesArray = (String[]) liste[x];
-            System.out.print(neuesArray[0]);
-            System.out.println(neuesArray[1]);
-            x++;
-        }
+    public void readAll(ArrayList<E[]> liste) {
+        System.out.println(liste.toString());
     }
 
-    public int getSize(MeineArrayList<E> liste){
-        return liste.size;
+    public int getSize(ArrayList<E[]> liste){
+        return liste.size();
     }
 
 

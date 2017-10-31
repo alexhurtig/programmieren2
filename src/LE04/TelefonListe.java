@@ -31,6 +31,8 @@ public class TelefonListe {
 
         find("bla", telefonBuch);
 
+        read(find("1234", telefonBuch),telefonBuch);
+
         read(find("vierter",telefonBuch),telefonBuch);
     }
 

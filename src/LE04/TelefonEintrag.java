@@ -32,9 +32,11 @@ public class TelefonEintrag {
             String[] neuesArray = (String[]) liste.get(x);
             if (neuesArray[0] == what) {
                 return x;
-            } else {
-                x++;
             }
+            if (neuesArray[1] == what) {
+                return x;
+            }
+            x++;
         }
         System.out.println(what + " konnte nicht gefunden werden.");
         return -1;
