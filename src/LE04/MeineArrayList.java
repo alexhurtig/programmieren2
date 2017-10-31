@@ -16,36 +16,40 @@ public class MeineArrayList<E> {
         increment = inc;
     }
 
-    public ArrayList<E[]> newList(){
-        ArrayList<E[]> liste = new ArrayList<>();
-        return liste;
+    public void newList() {
+        new MeineArrayList(0, 1);
     }
 
-    public ArrayList<E[]> addToList(ArrayList<E[]> liste, Object neuesElement){
-        liste.add((E[]) neuesElement);
-        return liste;
+    public void addToList(E o) {
+        if (size >= capacity) {
+            capacity += increment;
+            E[] e2 = (E[]) new Object[capacity];
+            e2 = list;
+            list = e2;
+        }
+        list[size++] = o;
     }
 
-    public ArrayList<E[]> delete(Object what, ArrayList<E[]> liste) {
-        liste.remove(what);
-        return liste;
+    public void delete(E o) {
+        for (int x = 0; x < size; x++) {
+            if (list[x] == o) {
+                list[x] = null;
+            }
+        }
     }
 
-    public ArrayList<E[]> deleteWholeList(ArrayList<E[]> liste){
-        liste = newList();
-        return liste;
+    public void deleteWholeList() {
+        new MeineArrayList(0,1);
     }
 
-    public void readAll(ArrayList<E[]> liste) {
-        System.out.println(liste.toString());
+    public void readAll() {
+        for (int x = 0; x < size; x++) {
+            System.out.println(list[x]);
+        }
     }
 
-    public int getSize(ArrayList<E[]> liste){
-        return liste.size();
+    public int getSize() {
+        return size;
     }
-
-
-
-
 
 }

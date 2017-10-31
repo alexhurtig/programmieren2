@@ -10,7 +10,6 @@ public class AllHotels {
         //I am lazy; of course here create different hotels
         hotels.add(Hotel.getDefaultHotel());
         return hotels;
-
     }
 
     public static void main(String[] args) {

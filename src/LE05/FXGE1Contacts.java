@@ -17,8 +17,10 @@ import LE05.model.Rating;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -27,6 +29,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class FXGE1Contacts extends Application{
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -46,6 +52,12 @@ public class FXGE1Contacts extends Application{
             Scene scene = new Scene(root,400,400);
             primaryStage.setScene(scene);
             primaryStage.show();
+
+            //Button button = new Button("Enter your rating");
+
+            //root.add(button, 0, 3);
+            //button.setOnAction(e -> changeScene(primaryStage));
+
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -90,7 +102,7 @@ public class FXGE1Contacts extends Application{
         root.setVgap(5);
         root.setPadding(new Insets(8, 8, 8, 8));
         int row = 0;
-        // the rows of root are dynamically allocated
+
         ArrayList<Rating> ratings = h.getRatings();
         for (int i=0; i<h.getRatings().size(); i++) {
             Rating r = ratings.get(i);
@@ -107,8 +119,19 @@ public class FXGE1Contacts extends Application{
         return pane;
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    /*private void changeScene(Stage stage){
+        stage.setTitle("Dialog");
+        GridPane root2 = new GridPane();
+        root2.add(new Label("Your rating:"), 0, 0);
+        TextField myrating = new TextField("write here");
+        root2.add(myrating, 1, 0);
+        myrating.setOnAction(e ->changeSceneBack(stage, myrating.getText()));
+        stage.setScene(new Scene(root2, 300, 300));
     }
 
+    private void changeSceneBack(Stage stage, String s){
+        stage.setTitle("hotel02B");
+        currentrating.setText(s);
+        stage.setScene(scene);
+    }*/
 }
