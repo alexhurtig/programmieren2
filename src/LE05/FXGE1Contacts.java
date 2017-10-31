@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * @author agathe merceron
  */
 
-import LE05.model.AllHotels;
-import LE05.model.Hotel;
-import LE05.model.Rating;
+import LE05.model.AllContacts;
+import LE05.model.Contact;
+import LE05.model.Email;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -42,8 +42,8 @@ public class FXGE1Contacts extends Application{
             VBox box = new VBox();
             box.setSpacing(20);
 
-            ArrayList<Hotel> hotels = AllHotels.getDefaultList();
-            for (Hotel h : hotels ) {
+            ArrayList<Contact> contacts = AllContacts.getDefaultList();
+            for (Contact h : contacts ) {
                 GridPane hotelPane = showHotel(h);
                 box.getChildren().add(hotelPane);
             }
@@ -63,7 +63,7 @@ public class FXGE1Contacts extends Application{
         }
     }
 
-    private GridPane showHotel (Hotel h) {
+    private GridPane showHotel (Contact c) {
         GridPane root = new GridPane();
         // horizontal gap and vertical gap between columns and lines
         root.setHgap(10);
@@ -77,41 +77,37 @@ public class FXGE1Contacts extends Application{
         // here space will be added around the grid
         root.setPadding(new Insets(25, 25, 25, 25));
 
-        Label hotel = new Label(h.getName()+"\n"
-                + h.getStreet() +" " +h.getNumber() + "\n"
-                +h.getZipcode() + " " + h.getCity());
+        Label hotel = new Label(c.getVorname()+"\n"
+                + c.getNachname() +" " +c.getPhoto() + "\n"
+                + c.getEmails());
         root.add(hotel, 0, 0);
 
         Image image = new Image (getClass().
-                getResource("/LE05/resources/"+h.getPhoto()).toString());
+                getResource("/LE05/resources/"+c.getPhoto()).toString());
 
         ImageView imageview = new ImageView(image);
         root.add(imageview, 1, 0);
 
         Label labelrating = new Label("current rating:");
         root.add(labelrating, 0, 1);
-        Label currentrating = new Label(Float.toString(h.getRating()));
+        Label currentrating = new Label(c.getEmails().toString());
         root.add(currentrating, 1, 1);
-        root.add(showRatings(h), 0, 2, 2, 1);
+        root.add(showRatings(c), 0, 2, 2, 1);
         return root;
     }
 
-    private ScrollPane showRatings(Hotel h){
+    private ScrollPane showRatings(Contact c){
         GridPane root = new GridPane();
         root.setHgap(5);
         root.setVgap(5);
         root.setPadding(new Insets(8, 8, 8, 8));
         int row = 0;
 
-        ArrayList<Rating> ratings = h.getRatings();
-        for (int i=0; i<h.getRatings().size(); i++) {
-            Rating r = ratings.get(i);
-            root.add(new Label("rating: "), 0, row);
-            root.add(new Label(Integer.toString(r.getRating())), 1, row);
-            String c = r.getComment();
-            if (!(c.equals(""))) {
-                root.add(new Label(c), 0, ++row, 2, 1);
-            }
+        ArrayList<Email> emails = c.getEmails();
+        for (int i=0; i<c.getEmails().size(); i++) {
+            Email e = emails.get(i);
+            root.add(new Label("email: "), 0, row);
+            root.add(new Label(e.getEmail()), 1, row);
             row++;
         }
         ScrollPane pane = new ScrollPane();
