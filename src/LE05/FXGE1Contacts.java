@@ -30,6 +30,9 @@ import javafx.stage.Stage;
 
 public class FXGE1Contacts extends Application{
 
+    private Label currentrating;
+    private Scene scene;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -38,9 +41,18 @@ public class FXGE1Contacts extends Application{
     public void start(Stage primaryStage) {
         try {
 
-            ScrollPane root = new ScrollPane();
+            GridPane root1 = new GridPane();
+
+            ScrollPane root2 = new ScrollPane();
             VBox box = new VBox();
             box.setSpacing(20);
+
+            Button button = new Button("Enter your rating");
+
+            root1.add(button, 0, 1);
+            button.setOnAction(e -> changeScene(primaryStage));
+
+            root1.add(root2, 0,3);
 
             ArrayList<Contact> contacts = AllContacts.getDefaultList();
             for (Contact h : contacts ) {
@@ -48,15 +60,12 @@ public class FXGE1Contacts extends Application{
                 box.getChildren().add(hotelPane);
             }
 
-            root.setContent(box);
-            Scene scene = new Scene(root,400,400);
+            root2.setContent(box);
+            Scene scene = new Scene(root1,600,600);
             primaryStage.setScene(scene);
             primaryStage.show();
 
-            //Button button = new Button("Enter your rating");
 
-            //root.add(button, 0, 3);
-            //button.setOnAction(e -> changeScene(primaryStage));
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -65,16 +74,12 @@ public class FXGE1Contacts extends Application{
 
     private GridPane showHotel (Contact c) {
         GridPane root = new GridPane();
-        // horizontal gap and vertical gap between columns and lines
         root.setHgap(10);
         root.setVgap(10);
-        //limit the width of columns
-        //gives a limit to column 0
         root.getColumnConstraints().add(new ColumnConstraints(100));
-        //gives a limit to column 1
         root.getColumnConstraints().add(new ColumnConstraints(140));
-        // an Insets defines the space around a region
-        // here space will be added around the grid
+
+
         root.setPadding(new Insets(25, 25, 25, 25));
 
         Label hotel = new Label(c.getVorname()+"\n"
@@ -83,7 +88,7 @@ public class FXGE1Contacts extends Application{
         root.add(hotel, 0, 0);
 
         Image image = new Image (getClass().
-                getResource("/LE05/resources/"+c.getPhoto()).toString());
+                getResource("/LE05/resources/" + c.getPhoto()).toString());
 
         ImageView imageview = new ImageView(image);
         root.add(imageview, 1, 0);
@@ -115,7 +120,7 @@ public class FXGE1Contacts extends Application{
         return pane;
     }
 
-    /*private void changeScene(Stage stage){
+    private void changeScene(Stage stage){
         stage.setTitle("Dialog");
         GridPane root2 = new GridPane();
         root2.add(new Label("Your rating:"), 0, 0);
@@ -129,5 +134,5 @@ public class FXGE1Contacts extends Application{
         stage.setTitle("hotel02B");
         currentrating.setText(s);
         stage.setScene(scene);
-    }*/
+    }
 }

@@ -42,8 +42,8 @@ public class Contact {
     }
 
     public static Contact getDefaultContact(){
-        Contact karl = new Contact("ibis Styles Hotel Berlin", "Brunnenstraße","ibisMitteBerlin.jpg");
-        karl.addEmail("great");
+        Contact karl = new Contact("Karl", "Berger","ibisMitteBerlin.jpg");
+        karl.addEmail("great@karl.de");
         karl.addEmail("bfla@fhdkal.de");
         return karl;
     }
