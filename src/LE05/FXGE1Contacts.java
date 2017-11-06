@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 public class FXGE1Contacts extends Application{
 
     private Label currentrating;
+    private Label contactMails;
     private Scene scene;
 
     public static void main(String[] args) {
@@ -47,7 +48,7 @@ public class FXGE1Contacts extends Application{
             VBox box = new VBox();
             box.setSpacing(20);
 
-            Button button = new Button("Enter your rating");
+            Button button = new Button("Neuen Kontakt hinzufügen!");
 
             root1.add(button, 0, 1);
             button.setOnAction(e -> changeScene(primaryStage));
@@ -55,8 +56,8 @@ public class FXGE1Contacts extends Application{
             root1.add(root2, 0,3);
 
             ArrayList<Contact> contacts = AllContacts.getDefaultList();
-            for (Contact h : contacts ) {
-                GridPane hotelPane = showHotel(h);
+            for (Contact c : contacts ) {
+                GridPane hotelPane = showContacts(c);
                 box.getChildren().add(hotelPane);
             }
 
@@ -72,7 +73,7 @@ public class FXGE1Contacts extends Application{
         }
     }
 
-    private GridPane showHotel (Contact c) {
+    private GridPane showContacts (Contact c) {
         GridPane root = new GridPane();
         root.setHgap(10);
         root.setVgap(10);
@@ -82,21 +83,22 @@ public class FXGE1Contacts extends Application{
 
         root.setPadding(new Insets(25, 25, 25, 25));
 
-        Label hotel = new Label(c.getVorname()+"\n"
+        Label contact = new Label(c.getVorname()+"\n"
                 + c.getNachname() +" " +c.getPhoto() + "\n"
                 + c.getEmails());
-        root.add(hotel, 0, 0);
+        root.add(contact, 0, 0);
 
         Image image = new Image (getClass().
                 getResource("/LE05/resources/" + c.getPhoto()).toString());
 
         ImageView imageview = new ImageView(image);
-        root.add(imageview, 1, 0);
+        root.add(imageview, 0, 1);
 
-        Label labelrating = new Label("current rating:");
-        root.add(labelrating, 0, 1);
-        Label currentrating = new Label(c.getEmails().toString());
-        root.add(currentrating, 1, 1);
+        Label labelvorname = new Label("Vorname:");
+        root.add(labelvorname, 0, 1);
+
+        Label contactMails = new Label(c.getEmails().toString());
+
         root.add(showRatings(c), 0, 2, 2, 1);
         return root;
     }
@@ -123,16 +125,39 @@ public class FXGE1Contacts extends Application{
     private void changeScene(Stage stage){
         stage.setTitle("Dialog");
         GridPane root2 = new GridPane();
-        root2.add(new Label("Your rating:"), 0, 0);
-        TextField myrating = new TextField("write here");
-        root2.add(myrating, 1, 0);
-        myrating.setOnAction(e ->changeSceneBack(stage, myrating.getText()));
+
+        root2.add(new Label("Vorname:"), 0, 0);
+        TextField firstname = new TextField("Vorname");
+        root2.add(firstname, 1, 0);
+        //firstname.setOnAction(e ->changeSceneBack(stage, firstname.getText()));
+
+        root2.add(new Label("Nachname:"), 0, 1);
+        TextField lastname = new TextField("Nachname");
+        root2.add(lastname, 1, 1);
+        //lastname.setOnAction(e->changeSceneBack(stage, lastname.getText()));
+
+        root2.add(new Label("Bild:"), 0, 2);
+        TextField picture = new TextField("Bild");
+        root2.add(picture, 1, 2);
+        //picture.setOnAction(e->changeSceneBack(stage, picture.getText()));
+
+        root2.add(new Label("Email:"), 0, 2);
+        TextField email = new TextField("Email");
+        root2.add(email, 1, 2);
+        //email.setOnAction(e->changeSceneBack(stage, email.getText()));
+
+        Button adder = new Button("Hinzufügen");
+        root2.add(adder, 0,3);
+        adder.fire(changeSceneBack(stage, firstname.getText(), lastname.getText(), picture.getText(), email.getText()));
+
         stage.setScene(new Scene(root2, 300, 300));
     }
 
-    private void changeSceneBack(Stage stage, String s){
+    private void changeSceneBack(Stage stage, String f, String l, String p, String e){
         stage.setTitle("hotel02B");
-        currentrating.setText(s);
+        Contact c = new Contact(f,l,p);
+        Email email = new Email(e);
+        email.setEmail(e);
         stage.setScene(scene);
     }
 }
