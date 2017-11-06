@@ -148,7 +148,7 @@ public class FXGE1Contacts extends Application{
 
         Button adder = new Button("Hinzufügen");
         root2.add(adder, 0,3);
-        adder.fire(changeSceneBack(stage, firstname.getText(), lastname.getText(), picture.getText(), email.getText()));
+        adder.setOnAction(e->changeSceneBack(stage, firstname.getText(), lastname.getText(), picture.getText(), email.getText()));
 
         stage.setScene(new Scene(root2, 300, 300));
     }
