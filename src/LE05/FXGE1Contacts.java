@@ -30,9 +30,7 @@ import javafx.stage.Stage;
 
 public class FXGE1Contacts extends Application{
 
-    private Label currentrating;
-    private Label contactMails;
-    private Scene scene;
+    private ArrayList<Contact> contacts = AllContacts.createList();
 
     public static void main(String[] args) {
         launch(args);
@@ -55,7 +53,7 @@ public class FXGE1Contacts extends Application{
 
             root1.add(root2, 0,3);
 
-            ArrayList<Contact> contacts = AllContacts.getDefaultList();
+            contacts = AllContacts.getDefaultList(contacts);
             for (Contact c : contacts ) {
                 GridPane hotelPane = showContacts(c);
                 box.getChildren().add(hotelPane);
@@ -129,35 +127,31 @@ public class FXGE1Contacts extends Application{
         root2.add(new Label("Vorname:"), 0, 0);
         TextField firstname = new TextField("Vorname");
         root2.add(firstname, 1, 0);
-        //firstname.setOnAction(e ->changeSceneBack(stage, firstname.getText()));
 
         root2.add(new Label("Nachname:"), 0, 1);
         TextField lastname = new TextField("Nachname");
         root2.add(lastname, 1, 1);
-        //lastname.setOnAction(e->changeSceneBack(stage, lastname.getText()));
 
         root2.add(new Label("Bild:"), 0, 2);
-        TextField picture = new TextField("Bild");
+        TextField picture = new TextField("Bild.jpg");
         root2.add(picture, 1, 2);
-        //picture.setOnAction(e->changeSceneBack(stage, picture.getText()));
 
-        root2.add(new Label("Email:"), 0, 2);
+        root2.add(new Label("Email:"), 0, 3);
         TextField email = new TextField("Email");
-        root2.add(email, 1, 2);
-        //email.setOnAction(e->changeSceneBack(stage, email.getText()));
+        root2.add(email, 1, 3);
 
         Button adder = new Button("Hinzufügen");
-        root2.add(adder, 0,3);
+        root2.add(adder, 0,4);
         adder.setOnAction(e->changeSceneBack(stage, firstname.getText(), lastname.getText(), picture.getText(), email.getText()));
 
         stage.setScene(new Scene(root2, 300, 300));
     }
 
     private void changeSceneBack(Stage stage, String f, String l, String p, String e){
-        stage.setTitle("hotel02B");
-        Contact c = new Contact(f,l,p);
-        Email email = new Email(e);
-        email.setEmail(e);
-        stage.setScene(scene);
+        stage.setTitle("add Contact to List");
+        Contact c = Contact.createContact(f,l,p,e);
+        AllContacts.addToList(contacts, c);
+        //stage.setScene(scene);
+        start(stage);
     }
 }

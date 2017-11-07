@@ -47,6 +47,11 @@ public class Contact {
         karl.addEmail("bfla@fhdkal.de");
         return karl;
     }
+    public static Contact createContact(String f, String l, String p, String e){
+        Contact newContact = new Contact(f, l, p);
+        newContact.addEmail(e);
+        return newContact;
+    }
 
     public static void main(String[] args) {
         Contact def = Contact.getDefaultContact();
