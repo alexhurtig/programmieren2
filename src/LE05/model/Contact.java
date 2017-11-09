@@ -41,21 +41,9 @@ public class Contact {
         emails.add(new Email(email));
     }
 
-    public static Contact getDefaultContact(){
-        Contact karl = new Contact("Karl", "Berger","ibisMitteBerlin.jpg");
-        karl.addEmail("great@karl.de");
-        karl.addEmail("bfla@fhdkal.de");
-        return karl;
-    }
     public static Contact createContact(String f, String l, String p, String e){
         Contact newContact = new Contact(f, l, p);
         newContact.addEmail(e);
         return newContact;
     }
-
-    public static void main(String[] args) {
-        Contact def = Contact.getDefaultContact();
-        System.out.println(def);
-    }
-
 }

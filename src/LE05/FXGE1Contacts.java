@@ -53,7 +53,7 @@ public class FXGE1Contacts extends Application{
 
             root1.add(root2, 0,3);
 
-            contacts = AllContacts.getDefaultList(contacts);
+            //contacts = AllContacts.getDefaultList(contacts);
             for (Contact c : contacts ) {
                 GridPane hotelPane = showContacts(c);
                 box.getChildren().add(hotelPane);
@@ -75,15 +75,12 @@ public class FXGE1Contacts extends Application{
         GridPane root = new GridPane();
         root.setHgap(10);
         root.setVgap(10);
-        root.getColumnConstraints().add(new ColumnConstraints(100));
-        root.getColumnConstraints().add(new ColumnConstraints(140));
-
+        root.getColumnConstraints().add(new ColumnConstraints(180));
 
         root.setPadding(new Insets(25, 25, 25, 25));
 
-        Label contact = new Label(c.getVorname()+"\n"
-                + c.getNachname() +" " +c.getPhoto() + "\n"
-                + c.getEmails());
+        Label contact = new Label("Vorname: " + c.getVorname()+ "\n"
+                + "Nachname: " + c.getNachname() + "\n");
         root.add(contact, 0, 0);
 
         Image image = new Image (getClass().
@@ -95,13 +92,11 @@ public class FXGE1Contacts extends Application{
         Label labelvorname = new Label("Vorname:");
         root.add(labelvorname, 0, 1);
 
-        Label contactMails = new Label(c.getEmails().toString());
-
-        root.add(showRatings(c), 0, 2, 2, 1);
+        root.add(showEmails(c), 0, 2, 2, 1);
         return root;
     }
 
-    private ScrollPane showRatings(Contact c){
+    private ScrollPane showEmails(Contact c){
         GridPane root = new GridPane();
         root.setHgap(5);
         root.setVgap(5);
@@ -148,10 +143,13 @@ public class FXGE1Contacts extends Application{
     }
 
     private void changeSceneBack(Stage stage, String f, String l, String p, String e){
+        String eml;
+        if (e.contains("@")&&!e.startsWith("@")&&!e.endsWith("@")){
+            eml = e;
+        } else { eml = "";}
         stage.setTitle("add Contact to List");
-        Contact c = Contact.createContact(f,l,p,e);
+        Contact c = Contact.createContact(f,l,p,eml);
         AllContacts.addToList(contacts, c);
-        //stage.setScene(scene);
         start(stage);
     }
 }
