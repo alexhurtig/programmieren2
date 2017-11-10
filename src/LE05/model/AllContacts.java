@@ -9,12 +9,6 @@ public class AllContacts {
         return hotels;
     }
 
-    public static ArrayList<Contact> getDefaultList(ArrayList<Contact> hotels){
-        hotels.add(Contact.getDefaultContact());
-        hotels.add(Contact.getDefaultContact());
-        return hotels;
-    }
-
     public static void addToList(ArrayList<Contact> l, Contact c){
         l.add(c);
     }
