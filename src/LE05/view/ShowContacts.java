@@ -1,18 +1,18 @@
 package LE05.view;
 
-import LE05.FXGE1Contacts;
 import LE05.model.AllContacts;
 import LE05.model.Contact;
 import LE05.model.Email;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -35,21 +35,20 @@ public class ShowContacts {
             root1.add(button, 0, 1);
             button.setOnAction(e -> changeScene(primaryStage));
 
-            root1.add(root2, 0,3);
+            root1.add(root2, 0, 3);
 
-            for (Contact c : contacts ) {
+            for (Contact c : contacts) {
                 GridPane hotelPane = showContacts(c);
                 box.getChildren().add(hotelPane);
             }
 
             root2.setContent(box);
-            Scene scene = new Scene(root1,600,600);
+            Scene scene = new Scene(root1, 600, 600);
             primaryStage.setScene(scene);
             primaryStage.show();
 
 
-
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -62,11 +61,11 @@ public class ShowContacts {
 
         root.setPadding(new Insets(25, 25, 25, 25));
 
-        Label contact = new Label("Vorname: " + c.getVorname()+ "\n"
+        Label contact = new Label("Vorname: " + c.getVorname() + "\n"
                 + "Nachname: " + c.getNachname() + "\n");
         root.add(contact, 0, 0);
 
-        Image image = new Image (getClass().
+        Image image = new Image(getClass().
                 getResource("/LE05/resources/" + c.getPhoto()).toString());
 
         ImageView imageview = new ImageView(image);
@@ -79,7 +78,7 @@ public class ShowContacts {
         return root;
     }
 
-    private ScrollPane showEmails(Contact c){
+    private ScrollPane showEmails(Contact c) {
         GridPane root = new GridPane();
         root.setHgap(5);
         root.setVgap(5);
@@ -87,7 +86,7 @@ public class ShowContacts {
         int row = 0;
 
         ArrayList<Email> emails = c.getEmails();
-        for (int i=0; i<c.getEmails().size(); i++) {
+        for (int i = 0; i < c.getEmails().size(); i++) {
             Email e = emails.get(i);
             root.add(new Label("email: "), 0, row);
             root.add(new Label(e.getEmail()), 1, row);
@@ -98,7 +97,7 @@ public class ShowContacts {
         return pane;
     }
 
-    public void changeScene(Stage stage){
+    public void changeScene(Stage stage) {
         stage.setTitle("Dialog");
         GridPane root2 = new GridPane();
 
@@ -119,19 +118,21 @@ public class ShowContacts {
         root2.add(email, 1, 3);
 
         Button adder = new Button("Hinzufügen");
-        root2.add(adder, 0,4);
-        adder.setOnAction(e->changeSceneBack(stage, firstname.getText(), lastname.getText(), picture.getText(), email.getText()));
+        root2.add(adder, 0, 4);
+        adder.setOnAction(e -> changeSceneBack(stage, firstname.getText(), lastname.getText(), picture.getText(), email.getText()));
 
         stage.setScene(new Scene(root2, 300, 300));
     }
 
     private void changeSceneBack(Stage stage, String f, String l, String p, String e) {
         String eml;
-        if (e.contains("@")&&!e.startsWith("@")&&!e.endsWith("@")){
+        if (e.contains("@") && !e.startsWith("@") && !e.endsWith("@")) {
             eml = e;
-        } else { eml = "";}
+        } else {
+            eml = "";
+        }
         stage.setTitle("add Contact to List");
-        Contact c = Contact.createContact(f,l,p,eml);
+        Contact c = Contact.createContact(f, l, p, eml);
         AllContacts.addToList(contacts, c);
         try {
             mainStage(stage);
