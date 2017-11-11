@@ -1,19 +1,8 @@
 package LE06.model;
 
-/**
- * a fabric for Shape-Objects.
- * @author Agathe Merceron
- */
-
 import java.util.Arrays;
 
 public class MAllShapes {
-
-    /**
-     * construct a number of Rectangle and Circle objects,
-     * stores them in an array and returns it
-     * @return an array filled with Rectangle or Circle objects
-     */
 
     public static MShape[] getDefaultShapes(){
         MShape[] allshapes= new MShape[7];
@@ -22,8 +11,8 @@ public class MAllShapes {
         allshapes[2] = new MCircle( 80, 80, 10);
         allshapes[3] = new MRectangle( 45, 105, 80, 40);
         allshapes[4] = new MCircle( 200, 100, 50);
-        allshapes[5] = new MEllipse(100,100,300,123);
-        allshapes[6] = new MSquare(100,100,300);
+        allshapes[5] = new MEllipse(10,100,100,23);
+        allshapes[6] = new MSquare(100,10,70);
         return allshapes;
     }
 
@@ -31,5 +20,4 @@ public class MAllShapes {
         MShape[] mix =  MAllShapes.getDefaultShapes();
         System.out.println(Arrays.deepToString(mix));
     }
-
 }

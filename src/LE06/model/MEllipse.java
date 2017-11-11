@@ -5,9 +5,9 @@ public class MEllipse extends MShape{
     private double xHeigth;
     private double yWidth;
 
-    public MEllipse(double xOrigin, double yOrigin, double xHeight, double yWidth) {
+    public MEllipse(double xOrigin, double yOrigin, double xHeigth, double yWidth) {
         super(xOrigin, yOrigin);
-        this.xHeigth = xHeight;
+        this.xHeigth = xHeigth;
         this.yWidth = yWidth;
     }
 
@@ -18,4 +18,7 @@ public class MEllipse extends MShape{
     public double getYWidth(){
         return yWidth;
     }
+
+    @Override
+    public double area () {return (Math.PI*xHeigth*yWidth);}
 }

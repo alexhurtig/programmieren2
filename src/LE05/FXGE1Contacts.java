@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 public class FXGE1Contacts extends Application {
 
-    private ArrayList<Contact> contacts = AllContacts.createList();
-
     public static void main(String[] args) {
         launch(args);
     }
