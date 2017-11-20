@@ -49,6 +49,19 @@ public class VFormChanger {
         enterWidth = new TextField(shape.toStringWidth());
         root.add(enterWidth, 1, 3);
 
+        if (shape.toString().contains("Circle")){
+            width.setVisible(false);
+            enterWidth.setVisible(false);
+            height.setText("Neuer Durchmesser: ");
+        } else if (shape.toString().contains("Square")){
+            width.setVisible(false);
+            enterWidth.setVisible(false);
+            height.setText("Neue Seitenlänge: ");
+        } else {
+            width.setVisible(true);
+            enterWidth.setVisible(true);
+        }
+
         Label info = new Label();
         info.setMaxWidth(300);
         root.add(info, 0, 5);

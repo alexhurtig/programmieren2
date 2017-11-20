@@ -13,8 +13,8 @@ public class MCircle extends MShape {
         return radius;
     }
 
-    public void setRadius(double radius) {
-        this.radius = radius;
+    public void setyDelta(double radius) {
+        this.radius = radius/2;
     }
 
     public String toStringHeight(){
