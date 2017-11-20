@@ -62,15 +62,20 @@ public class VFormChanger {
             enterWidth.setVisible(true);
         }
 
-        Label info = new Label();
-        info.setMaxWidth(300);
+        Label info = new Label(shape.toString());
+        info.setMaxWidth(600);
         root.add(info, 0, 5);
+
+        Label setHeight = new Label();
+        info.setMaxWidth(300);
+        root.add(setHeight, 0, 6);
+        setHeight.textProperty().bind(enterHeight.textProperty());
 
         Button submit = new Button("submit");
         submit.setOnAction(e -> FormChanger.checkValues(shape, enterXPosition, enterYPosition, enterHeight, enterWidth, xPosition, yPosition, height, width, info, stage));
         root.add(submit, 0, 4);
 
-        stage.setScene(new Scene(root, 450, 400));
+        stage.setScene(new Scene(root, 550, 300));
         stage.show();
         return stage;
     }

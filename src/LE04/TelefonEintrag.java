@@ -3,6 +3,20 @@ package LE04;
 import java.util.ArrayList;
 
 public class TelefonEintrag {
+
+    private String name;
+    private String number;
+    private ArrayList<TelefonEintrag> TelefonRegister = new ArrayList<TelefonEintrag>(null);
+
+    public void Telefoneintrag(String name, String number) {
+        this.name = name;
+        this.number = number;
+    }
+
+    public void addEntry(TelefonEintrag telein) {
+        TelefonRegister.add(telein);
+    }
+
     public static ArrayList update(String von, String zu, ArrayList telefonBuch) {
         int rep = find(von, telefonBuch);
 
