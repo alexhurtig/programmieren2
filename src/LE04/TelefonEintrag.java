@@ -6,53 +6,85 @@ public class TelefonEintrag {
 
     private String name;
     private String number;
-    private ArrayList<TelefonEintrag> TelefonRegister = new ArrayList<TelefonEintrag>(null);
 
-    public void Telefoneintrag(String name, String number) {
+    TelefonEintrag(String name, String number) {
         this.name = name;
         this.number = number;
     }
 
-    public void addEntry(TelefonEintrag telein) {
-        TelefonRegister.add(telein);
+    public TelefonEintrag() {
     }
 
-    public static ArrayList update(String von, String zu, ArrayList telefonBuch) {
-        int rep = find(von, telefonBuch);
-
-        if (rep > -1) {
-            String[] neuesArray = (String[]) telefonBuch.get(rep);
-            neuesArray[0] = zu;
-            telefonBuch.set(rep, neuesArray);
-            return telefonBuch;
-        } else {
-            return telefonBuch;
-        }
+    public static ArrayList<TelefonEintrag> newRegister() {
+        return new ArrayList<>();
     }
 
-    public static ArrayList delete(String what, ArrayList liste) {
-        int removable = find(what, liste);
-        if (removable != -1) {
-            liste.remove(removable);
-            return liste;
-        } else {
-            return liste;
-        }
+    public String getName() {
+        return name;
     }
 
-    public static int find(String what, ArrayList liste) {
-        int x = 0;
-        while (x < liste.size()) {
-            String[] neuesArray = (String[]) liste.get(x);
-            if (neuesArray[0] == what) {
-                return x;
+    public String getNumber() {
+        return number;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public static void printRegister(ArrayList<TelefonEintrag> telefonRegister) {
+        for (TelefonEintrag TelefonRegister : telefonRegister) {
+            if (TelefonRegister != null) {
+                System.out.print("Name: " + TelefonRegister.getName());
+                System.out.println(" Nummer: " + TelefonRegister.getNumber());
             }
-            if (neuesArray[1] == what) {
-                return x;
-            }
-            x++;
         }
-        System.out.println(what + " konnte nicht gefunden werden.");
-        return -1;
+        System.out.println();
+    }
+
+    public static TelefonEintrag find(ArrayList<TelefonEintrag> telefonRegister, String search) {
+        for (TelefonEintrag TelefonRegister : telefonRegister) {
+            if (TelefonRegister != null) {
+                if (TelefonRegister.getName().equals(search)) {
+                    return TelefonRegister;
+                } else if (TelefonRegister.getNumber().equals(search)) {
+                    return TelefonRegister;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static boolean update(String von, String zu, ArrayList<TelefonEintrag> telefonBuch) {
+        TelefonEintrag rep = find(telefonBuch, von);
+        if (rep != null) {
+            for (TelefonEintrag telefonEintrag : telefonBuch) {
+                if (telefonEintrag.getName().equals(von)) {
+                    telefonEintrag.setName(zu);
+                    return true;
+                } else if (telefonEintrag.getNumber().equals(von)) {
+                    telefonEintrag.setNumber(zu);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean delete(String weg, ArrayList<TelefonEintrag> telefonBuch) {
+        TelefonEintrag rep = find(telefonBuch, weg);
+        if (rep != null) {
+            int c = telefonBuch.indexOf(rep);
+            while (c < (telefonBuch.size() - 1)) {
+                telefonBuch.set(c, telefonBuch.get(c + 1));
+                telefonBuch.set(c + 1, null);
+                c++;
+            }
+        }
+
+        return false;
     }
 }
