@@ -2,13 +2,16 @@ package LE08;
 
 public class Labyrinth {
 
-    private char[][] lab;
+    private char[][] lab = new char[10][10];
     private boolean ret = false;
     int prevX;
     int prevY;
     int deadCount = 0;
 
     public boolean existWeg(int y, int x) {
+
+        //uncomment to see every step printed to console!
+        //printLab(lab);
 
         if (deadCount < 100) {
             deadCount++;
@@ -147,7 +150,7 @@ public class Labyrinth {
         return false;
     }
 
-    static void printLab(char[][] lab) {
+    void printLab() {
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -160,7 +163,6 @@ public class Labyrinth {
     }
 
     public char[][] getLabyrinth() {
-        lab = new char[10][10];
 
         lab[0][0] = 'X';
         lab[1][0] = ' ';
@@ -276,7 +278,6 @@ public class Labyrinth {
     }
 
     public char[][] getLabyrinth2() {
-        lab = new char[10][10];
 
         lab[0][0] = 'X';
         lab[1][0] = 'X';
