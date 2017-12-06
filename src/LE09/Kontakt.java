@@ -16,8 +16,8 @@ public class Kontakt {
     private String land;
 
     public Kontakt(String pId, KontaktTyp pTyp, String pNachname,
-            String pVorname, String pStrasse, String pPlz, String pOrt,
-            String pLand) {
+                   String pVorname, String pStrasse, String pPlz, String pOrt,
+                   String pLand) {
         setId(pId);
         setTyp(pTyp);
         setNachname(pNachname);
@@ -28,8 +28,11 @@ public class Kontakt {
         setLand(pLand);
     }
 
+    public Kontakt() {
+    }
+
     public Kontakt(KontaktTyp pTyp, String pNachname, String pVorname,
-            String pStrasse, String pPlz, String pOrt, String pLand) {
+                   String pStrasse, String pPlz, String pOrt, String pLand) {
 
         this(null, pTyp, pNachname, pVorname, pStrasse, pPlz, pOrt, pLand);
     }
