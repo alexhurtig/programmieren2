@@ -137,5 +137,71 @@ public class StacksTests {
     } catch (FullStackException | EmptyStackException e) {
       System.out.println(e.getMessage());
     }
+
+    System.out.println("----------------------------------------------------------");
+
+    java.util.Stack<String> si1 = new java.util.Stack<>();
+
+    try {
+      System.out.println(si1);
+
+      si1.push("asdfd");
+      si1.push("fgsdhja");
+      si1.push("hgfd");
+      si1.push("gfsf");
+      si1.push("lkhklh");
+
+      System.out.println(si1);
+
+      System.out.println("si1.pop " + si1.pop());
+      System.out.println("si1.pop " + si1.pop());
+      System.out.println("si1.pop " + si1.pop());
+
+      System.out.println(si1);
+
+      si1.push("tretwe");
+      si1.push("bvcxb");
+      si1.push("gfhtd");
+
+      System.out.println(si1);
+
+      si1.push("nhdz");
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    System.out.println("----------------------------------------------------------");
+
+    java.util.Stack<Integer> si2 = new java.util.Stack<>();
+
+    try {
+      System.out.println(si2);
+
+      si2.push(123);
+      si2.push(234);
+      si2.push(345);
+      si2.push(654);
+      si2.push(765);
+
+      System.out.println(si2);
+
+      System.out.println("si2.pop " + si2.pop());
+      System.out.println("si2.pop " + si2.pop());
+      System.out.println("si2.pop " + si2.pop());
+
+      System.out.println(si2);
+
+      si2.push(876);
+      si2.push(987);
+      si2.push(998);
+
+      System.out.println(si2);
+
+      si2.push(150);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }

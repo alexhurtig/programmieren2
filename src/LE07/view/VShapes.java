@@ -1,7 +1,7 @@
 package LE07.view;
 
+import java.lang.reflect.Method;
 import LE07.controller.FormChanger;
-import LE07.model.MAllShapes;
 import LE07.model.MShape;
 import javafx.event.EventHandler;
 import javafx.event.EventTarget;
@@ -11,8 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.lang.reflect.Method;
 
 public class VShapes {
 
@@ -45,25 +43,11 @@ public class VShapes {
 
                 s1.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
-                    /*public void changeX(ObservableValue observableValue, Object oldVal, Object newVal) {
-                      observableValue = positionX;
-                        System.out.println("Electric bill has changed!");
-                    }
-
-                    public void changeY(ObservableValue observableValue, Object oldVal, Object newVal) {
-                        observableValue = positionY;
-                        System.out.println("Electric bill has changed!");
-                    }
-
-                    ReadOnlyDoubleWrapper positionY = new ReadOnlyDoubleWrapper(s.getxOrigin());
-                    ReadOnlyDoubleWrapper positionX = new ReadOnlyDoubleWrapper(s.getxOrigin());
-    */
                     public void handle(MouseEvent event) {
                         target = event.getTarget();
                         String str = target.toString();
                         System.out.println("Tile pressed " + target.toString());
                         new FormChanger().FormChanger(s, str, stage);
-                        //event.consume();
                     }
                 });
 
