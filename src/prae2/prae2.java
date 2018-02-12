@@ -1,8 +1,29 @@
 package prae2;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
 public class prae2 {
 
   public static void main(String[] args) {
+
+    List<Number> lN = new ArrayList<>();
+    System.out.println(lN.add(new Double(123)));
+    System.out.println(lN.add(123));
+    System.out.println(lN.add(123.0));
+    System.out.println(lN);
+    Collection<Integer> cI = new ArrayList<>();
+    System.out.println(cI.add(3));
+    System.out.println(cI.add(2));
+    System.out.println(lN.addAll(cI));
+    System.out.println(lN);
+    System.out.println(lN.retainAll(new HashSet<Object>()));
+    System.out.println(lN);
+    System.out.println(cI.removeAll(new LinkedList<String>()));
+    System.out.println(cI);
 
     //reku06(432);
 
